@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Angelica Vicente — Massoterapeuta Integrativa</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #F5F0E8;
+    --warm-white: #FAF7F2;
+    --stone: #C4B5A0;
+    --taupe: #9E8E7E;
+    --mocha: #6B5744;
+    --deep: #3A2E26;
+    --gold: #C9A96E;
+    --gold-light: #E8D5B0;
+    --sage: #8A9E8C;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background-color: var(--cream); color: var(--deep); font-family: 'Jost', sans-serif; font-weight: 300; }
+
+  .cover {
+    min-height: 100vh;
+    background: linear-gradient(160deg, var(--deep) 0%, #5C4538 50%, var(--mocha) 100%);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    padding: 60px 40px; position: relative; overflow: hidden;
+  }
+  .cover::before { content: ''; position: absolute; top: -100px; right: -100px; width: 500px; height: 500px; border-radius: 50%; border: 1px solid rgba(201,169,110,0.15); }
+  .cover::after { content: ''; position: absolute; bottom: -150px; left: -150px; width: 600px; height: 600px; border-radius: 50%; border: 1px solid rgba(201,169,110,0.1); }
+  .cover-ornament { width: 1px; height: 60px; background: linear-gradient(to bottom, transparent, var(--gold)); margin-bottom: 32px; }
+  .cover-label { font-family: 'Jost', sans-serif; font-size: 10px; font-weight: 500; letter-spacing: 4px; text-transform: uppercase; color: var(--gold); margin-bottom: 20px; }
+  .cover-name { font-family: 'Cormorant Garamond', serif; font-size: clamp(42px, 8vw, 72px); font-weight: 300; color: var(--warm-white); text-align: center; line-height: 1.1; letter-spacing: 2px; }
+  .cover-name em { font-style: italic; color: var(--gold-light); }
+  .cover-divider { display: flex; align-items: center; gap: 16px; margin: 28px 0; }
+  .cover-divider span { width: 50px; height: 1px; background: var(--gold); opacity: 0.5; }
+  .cover-subtitle { font-family: 'Jost', sans-serif; font-size: 12px; font-weight: 400; letter-spacing: 3px; text-transform: uppercase; color: var(--stone); }
+  .cover-bottom { position: absolute; bottom: 40px; font-size: 10px; letter-spacing: 2px; color: var(--taupe); text-transform: uppercase; }
+
+  .section { padding: 24px 0 8px; max-width: 720px; margin: 0 auto; padding-left: 40px; padding-right: 40px; }
+  .section-header { display: flex; align-items: center; gap: 16px; margin-bottom: 32px; padding-top: 48px; }
+  .section-header h2 { font-family: 'Jost', sans-serif; font-size: 10px; font-weight: 500; letter-spacing: 4px; text-transform: uppercase; color: var(--gold); white-space: nowrap; }
+  .section-header::after { content: ''; flex: 1; height: 1px; background: linear-gradient(to right, var(--gold-light), transparent); }
+
+  .card { background: var(--warm-white); border-radius: 2px; padding: 36px; margin-bottom: 20px; position: relative; border-left: 2px solid transparent; transition: border-color 0.3s; }
+  .card:hover { border-left-color: var(--gold); }
+  .card-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; margin-bottom: 12px; }
+  .card-name { font-family: 'Cormorant Garamond', serif; font-size: clamp(20px, 3vw, 26px); font-weight: 400; color: var(--deep); line-height: 1.2; flex: 1; }
+  .card-tag { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--taupe); background: var(--cream); padding: 4px 10px; border-radius: 20px; white-space: nowrap; margin-top: 4px; }
+  .card-desc { font-family: 'Cormorant Garamond', serif; font-size: 15px; color: var(--taupe); line-height: 1.75; margin-bottom: 24px; font-style: italic; text-wrap: balance; }
+  .card-options { display: grid; gap: 12px; }
+
+  .option { display: flex; justify-content: space-between; align-items: center; padding: 14px 20px; background: var(--cream); border-radius: 2px; }
+  .option-left { display: flex; flex-direction: column; gap: 2px; }
+  .option-duration { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--taupe); }
+  .option-type { font-size: 13px; color: var(--mocha); font-weight: 400; }
+  .option-price { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 500; color: var(--deep); }
+
+  .package { border: 1px solid var(--gold-light); padding: 14px 20px; border-radius: 2px; display: flex; justify-content: space-between; align-items: center; margin-top: 4px; }
+  .package-left { display: flex; flex-direction: column; gap: 2px; }
+  .package-label { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); }
+  .package-gift { font-family: 'Cormorant Garamond', serif; font-size: 14px; font-style: italic; color: var(--taupe); }
+  .package-price { font-family: 'Cormorant Garamond', serif; font-size: 22px; color: var(--mocha); }
+
+  .cta-btn { display: inline-flex; align-items: center; gap: 8px; margin-top: 20px; background: var(--mocha); color: var(--gold-light); text-decoration: none; font-family: 'Jost', sans-serif; font-size: 11px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; padding: 12px 24px; border-radius: 2px; transition: background 0.2s, color 0.2s; }
+  .cta-btn:hover { background: var(--deep); color: var(--gold); }
+
+  .footer { background: var(--deep); padding: 60px 40px; text-align: center; margin-top: 60px; }
+  .footer-name { font-family: 'Cormorant Garamond', serif; font-size: 28px; color: var(--gold-light); font-weight: 300; letter-spacing: 2px; margin-bottom: 8px; }
+  .footer-title { font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--taupe); margin-bottom: 32px; }
+  .footer-divider { width: 40px; height: 1px; background: var(--gold); margin: 0 auto 32px; opacity: 0.4; }
+  .footer-note { font-family: 'Cormorant Garamond', serif; font-size: 15px; font-style: italic; color: var(--stone); line-height: 1.7; max-width: 400px; margin: 0 auto; }
+
+  @media (max-width: 480px) {
+    .cover { padding: 60px 28px; }
+    .section { padding-left: 20px; padding-right: 20px; }
+    .card { padding: 24px 20px; }
+    .footer { padding: 60px 28px; }
+    .card-top { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<!-- CAPA -->
+<div class="cover">
+  <div class="cover-ornament"></div>
+  <div class="cover-label">O Cuidado que Você Merece</div>
+  <div class="cover-name">Angelica<br><em>Vicente</em></div>
+  <div class="cover-divider">
+    <span></span>
+    <svg viewBox="0 0 10 10" width="12" height="12" xmlns="http://www.w3.org/2000/svg"><text x="5" y="8" text-anchor="middle" font-size="10" fill="#C9A96E">✦</text></svg>
+    <span></span>
+  </div>
+  <div class="cover-subtitle">Massoterapeuta Integrativa</div>
+  <div class="cover-bottom">Corpo · Mente · Energia</div>
+</div>
+
+<!-- SOBRE MIM -->
+<div style="background: var(--warm-white);">
+  <div style="max-width: 720px; margin: 0 auto; padding: 72px 40px 64px;">
+    <div class="section-header" style="padding-top: 0;"><h2>Sobre mim</h2></div>
+    <div style="display: flex; flex-direction: column; gap: 24px;">
+      <p style="font-family: 'Cormorant Garamond', serif; font-size: clamp(20px, 3vw, 26px); font-weight: 300; font-style: italic; color: var(--mocha); line-height: 1.6;">Massoterapeuta, aromaterapeuta e técnica em estética formada pelo SENAC São Paulo, com mais de 4 anos de experiência no cuidado integrativo.</p>
+      <p style="font-family: 'Cormorant Garamond', serif; font-size: clamp(16px, 2.5vw, 19px); font-weight: 300; color: var(--taupe); line-height: 1.85;">Quantas vezes você adiou o seu próprio cuidado? Cada sessão aqui é um convite para parar, de verdade, e sentir o corpo soltar o que já não precisa mais carregar.</p>
+      <p style="font-family: 'Cormorant Garamond', serif; font-size: clamp(16px, 2.5vw, 19px); font-weight: 300; color: var(--taupe); line-height: 1.85;">Os aromas chegam antes do toque. O tempo muda de ritmo. E você sai de uma forma que é difícil de explicar, mas fácil de sentir.</p>
+      <p style="font-family: 'Cormorant Garamond', serif; font-size: clamp(16px, 2.5vw, 19px); font-weight: 300; color: var(--taupe); line-height: 1.85;">Cuido de cada detalhe porque acredito que cuidar de alguém é um ato sagrado. Minha missão em cada sessão é criar um espaço onde você se sinta completamente acolhido, seguro para soltar, e lembrado de que esse cuidado também é seu direito.</p>
+    </div>
+  </div>
+</div>
+
+<!-- INTRO -->
+<div style="background: var(--cream);">
+  <div style="max-width: 680px; margin: 0 auto; padding: 60px 40px; text-align: center;">
+    <p style="font-family: 'Cormorant Garamond', serif; font-size: clamp(18px, 3vw, 24px); font-weight: 300; font-style: italic; color: var(--mocha); line-height: 1.7; text-wrap: balance;">Cada sessão é uma experiência pensada para você, do começo ao fim, com óleos e velas naturais, aromaterapia terapêutica e presença integrativa.</p>
+    <p style="margin-top: 20px; font-size: 12px; letter-spacing: 1px; color: var(--taupe); font-family: 'Jost', sans-serif;">Todos os atendimentos incluem ritual de boas-vindas com respiração consciente.</p>
+    <p style="margin-top: 10px; font-size: 12px; letter-spacing: 1px; color: var(--taupe); font-family: 'Jost', sans-serif;">Antes da sessão, você recebe um formulário para personalizar sua experiência, incluindo a playlist que vai te acompanhar.</p>
+    <p style="margin-top: 10px; font-size: 12px; letter-spacing: 1px; color: var(--taupe); font-family: 'Jost', sans-serif;">Atendimento com hora marcada. Para atendimento a domicílio, consulte taxas e disponibilidade.</p>
+  </div>
+</div>
+
+<!-- MASSAGENS RELAXANTES -->
+<div class="section">
+  <div class="section-header"><h2>Massagem Relaxante</h2></div>
+
+  <div class="card">
+    <div class="card-top">
+      <div class="card-name">Relaxante com Aromaterapia</div>
+    </div>
+    <div class="card-desc">Uma massagem que começa antes do toque. Os óleos essenciais terapêuticos criam uma atmosfera de acolhimento e leveza desde os primeiros momentos, preparando o corpo e a mente para soltar de verdade. Ideal para quem precisa desacelerar e se reencontrar.</div>
+    <div class="card-options">
+      <div class="option">
+        <div class="option-left"><div class="option-duration">50 min</div><div class="option-type">Sessão avulsa</div></div>
+        <div class="option-price">R$ 150</div>
+      </div>
+      <div class="option">
+        <div class="option-left"><div class="option-duration">1h20</div><div class="option-type">Sessão avulsa</div></div>
+        <div class="option-price">R$ 170</div>
+      </div>
+      <div class="package">
+        <div class="package-left"><div class="package-label">✦ Pacote 4 sessões · 50 min</div><div class="package-gift">inclui roll-on terapêutico personalizado</div></div>
+        <div class="package-price">R$ 560</div>
+      </div>
+      <div class="package">
+        <div class="package-left"><div class="package-label">✦ Pacote 4 sessões · 1h20</div><div class="package-gift">inclui roll-on terapêutico personalizado</div></div>
+        <div class="package-price">R$ 640</div>
+      </div>
+    </div>
+    <a class="cta-btn" href="https://wa.me/5515988067216?text=Ol%C3%A1%2C%20quero%20agendar%20Massagem%20Relaxante%20com%20Aromaterapia" target="_blank">✦ Quero agendar</a>
+  </div>
+
+  <div class="card">
+    <div class="card-top">
+      <div class="card-name">Relaxante com Revitalização Facial</div>
+      <div class="card-tag">Exclusivo</div>
+    </div>
+    <div class="card-desc">Corpo e rosto cuidados ao mesmo tempo. A sessão combina massagem relaxante com aromaterapia e um protocolo facial completo: higienização, esfoliação, máscara revitalizante e proteção solar com cosméticos Adcos. Você sai renovado por inteiro.</div>
+    <div class="card-options">
+      <div class="option">
+        <div class="option-left"><div class="option-duration">1h20</div><div class="option-type">Sessão avulsa</div></div>
+        <div class="option-price">R$ 190</div>
+      </div>
+      <div class="package">
+        <div class="package-left"><div class="package-label">✦ Pacote 4 sessões</div><div class="package-gift">inclui roll-on terapêutico personalizado</div></div>
+        <div class="package-price">R$ 720</div>
+      </div>
+    </div>
+    <a class="cta-btn" href="https://wa.me/5515988067216?text=Ol%C3%A1%2C%20quero%20agendar%20Massagem%20Relaxante%20com%20Revitaliza%C3%A7%C3%A3o%20Facial" target="_blank">✦ Quero agendar</a>
+  </div>
+
+  <div class="card">
+    <div class="card-top">
+      <div class="card-name">Relaxante com Spa dos Pés e Mãos</div>
+    </div>
+    <div class="card-desc">Uma atenção especial para as partes do corpo que mais trabalham e menos descansam. A sessão inclui escalda-pés, esfoliação, nutrição e hidratação intensiva com filme PVC, botas e luvas laminadas, finalizando com massagem relaxante com aromaterapia. Sensação de leveza do começo ao fim.</div>
+    <div class="card-options">
+      <div class="option">
+        <div class="option-left"><div class="option-duration">1h20</div><div class="option-type">Sessão avulsa</div></div>
+        <div class="option-price">R$ 180</div>
+      </div>
+      <div class="package">
+        <div class="package-left"><div class="package-label">✦ Pacote 4 sessões</div><div class="package-gift">inclui roll-on terapêutico personalizado</div></div>
+        <div class="package-price">R$ 680</div>
+      </div>
+    </div>
+    <a class="cta-btn" href="https://wa.me/5515988067216?text=Ol%C3%A1%2C%20quero%20agendar%20Massagem%20Relaxante%20com%20Spa%20dos%20P%C3%A9s%20e%20M%C3%A3os" target="_blank">✦ Quero agendar</a>
+  </div>
+</div>
+
+<!-- ESPECIAIS -->
+<div class="section">
+  <div class="section-header"><h2>Experiências Especiais</h2></div>
+
+  <div class="card">
+    <div class="card-top">
+      <div class="card-name">Candle Massage</div>
+      <div class="card-tag">Artesanal</div>
+    </div>
+    <div class="card-desc">A vela aquece, derrete e se transforma no óleo da massagem. O calor penetra fundo nos músculos, a pele bebe essa nutrição toda, e o que sobra é uma sensação de conforto que vai muito além do relaxamento. Para quem quer se entregar de vez.</div>
+    <div class="card-options">
+      <div class="option">
+        <div class="option-left"><div class="option-duration">50 min</div><div class="option-type">Sessão avulsa</div></div>
+        <div class="option-price">R$ 160</div>
+      </div>
+      <div class="option">
+        <div class="option-left"><div class="option-duration">1h20</div><div class="option-type">Sessão avulsa</div></div>
+        <div class="option-price">R$ 180</div>
+      </div>
+      <div class="package">
+        <div class="package-left"><div class="package-label">✦ Pacote 4 sessões · 50 min</div><div class="package-gift">inclui roll-on terapêutico personalizado</div></div>
+        <div class="package-price">R$ 600</div>
+      </div>
+      <div class="package">
+        <div class="package-left"><div class="package-label">✦ Pacote 4 sessões · 1h20</div><div class="package-gift">inclui roll-on terapêutico personalizado</div></div>
+        <div class="package-price">R$ 680</div>
+      </div>
+    </div>
+    <a class="cta-btn" href="https://wa.me/5515988067216?text=Ol%C3%A1%2C%20quero%20agendar%20Candle%20Massage" target="_blank">✦ Quero agendar</a>
+  </div>
+
+  <div class="card">
+    <div class="card-top">
+      <div class="card-name">Massagem Energética Integrativa</div>
+      <div class="card-tag">Exclusivo</div>
+    </div>
+    <div class="card-desc">Mais do que relaxamento, uma sessão de reconexão. Trabalhamos juntos o alinhamento energético dos chakras, a liberação de energias estagnadas e o reencontro consigo mesmo, com aconselhamento intuitivo ao final. Para quem sente que precisa se reorganizar por dentro.</div>
+    <div class="card-options">
+      <div class="option">
+        <div class="option-left"><div class="option-duration">50 min</div><div class="option-type">Sessão avulsa</div></div>
+        <div class="option-price">R$ 150</div>
+      </div>
+      <div class="package">
+        <div class="package-left"><div class="package-label">✦ Pacote 4 sessões</div><div class="package-gift">inclui cristal de proteção + roll-on terapêutico</div></div>
+        <div class="package-price">R$ 560</div>
+      </div>
+    </div>
+    <a class="cta-btn" href="https://wa.me/5515988067216?text=Ol%C3%A1%2C%20quero%20agendar%20Massagem%20Energ%C3%A9tica%20Integrativa" target="_blank">✦ Quero agendar</a>
+  </div>
+</div>
+
+<!-- TERAPÊUTICA -->
+<div class="section">
+  <div class="section-header"><h2>Massagem Terapêutica</h2></div>
+
+  <div class="card">
+    <div class="card-top">
+      <div class="card-name">Drenagem Linfática</div>
+    </div>
+    <div class="card-desc">Um toque leve com efeito profundo. A drenagem estimula o sistema linfático, reduz o inchaço, melhora a circulação e deixa o corpo mais leve por dentro e por fora. Perfeita para quem quer resultados visíveis e uma sensação de renovação a cada sessão.</div>
+    <div class="card-options">
+      <div class="option">
+        <div class="option-left"><div class="option-duration">50 min</div><div class="option-type">Sessão avulsa</div></div>
+        <div class="option-price">R$ 120</div>
+      </div>
+      <div class="package">
+        <div class="package-left"><div class="package-label">✦ Pacote 5 sessões</div><div class="package-gift">inclui óleo corporal para drenagem em casa</div></div>
+        <div class="package-price">R$ 540</div>
+      </div>
+    </div>
+    <a class="cta-btn" href="https://wa.me/5515988067216?text=Ol%C3%A1%2C%20quero%20agendar%20Drenagem%20Linf%C3%A1tica" target="_blank">✦ Quero agendar</a>
+  </div>
+
+  <div class="card">
+    <div class="card-top">
+      <div class="card-name">Massagem Terapêutica</div>
+    </div>
+    <div class="card-desc">Para quem carrega a tensão no corpo e precisa de alívio real. Técnicas direcionadas para liberar pontos de dor, contraturas musculares e aquela rigidez que parece não sair nunca. Você sai mais leve, mais solto, e com o corpo funcionando de um jeito que às vezes você já havia esquecido.</div>
+    <div class="card-options">
+      <div class="option">
+        <div class="option-left"><div class="option-duration">50 min</div><div class="option-type">Sessão avulsa</div></div>
+        <div class="option-price">R$ 150</div>
+      </div>
+      <div class="package">
+        <div class="package-left"><div class="package-label">✦ Pacote 4 sessões</div><div class="package-gift">inclui óleo natural para alívio de dores em casa</div></div>
+        <div class="package-price">R$ 560</div>
+      </div>
+    </div>
+    <a class="cta-btn" href="https://wa.me/5515988067216?text=Ol%C3%A1%2C%20quero%20agendar%20Massagem%20Terap%C3%AAutica" target="_blank">✦ Quero agendar</a>
+  </div>
+
+  <div class="card">
+    <div class="card-top">
+      <div class="card-name">Cuidado Especial para Gestantes</div>
+      <div class="card-tag">Exclusivo</div>
+    </div>
+    <div class="card-desc">Uma sessão pensada para cada detalhe do corpo que carrega uma vida. Inclui escalda-pés anti-inflamatório para alívio de dores, inchaço e fascite plantar, drenagem linfática nos pés, pernas e mãos, e massagem relaxante nos pés, nas costas, no pescoço e na cabeça. Cuidado completo, com a segurança e a delicadeza que esse momento merece.</div>
+    <div class="card-options">
+      <div class="option">
+        <div class="option-left"><div class="option-duration">1h20</div><div class="option-type">Sessão avulsa</div></div>
+        <div class="option-price">R$ 160</div>
+      </div>
+      <div class="package">
+        <div class="package-left"><div class="package-label">✦ Pacote 4 sessões</div><div class="package-gift">inclui óleo corporal nutritivo para prevenir estrias e cuidar de pernas e pés</div></div>
+        <div class="package-price">R$ 600</div>
+      </div>
+    </div>
+    <a class="cta-btn" href="https://wa.me/5515988067216?text=Ol%C3%A1%2C%20quero%20agendar%20Cuidado%20Especial%20para%20Gestantes" target="_blank">✦ Quero agendar</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="footer-name">Angelica Vicente</div>
+  <div class="footer-title">Massoterapeuta Integrativa</div>
+  <div class="footer-divider"></div>
+  <div class="footer-note">Os óleos e as velas utilizados nas sessões são produzidos artesanalmente por mim, com ingredientes naturais escolhidos com intenção.</div>
+  <div style="margin-top: 40px; display: flex; flex-direction: column; gap: 14px; align-items: center;">
+    <a href="https://wa.me/5515988067216" target="_blank" style="display: inline-flex; align-items: center; gap: 10px; background: rgba(201,169,110,0.12); border: 1px solid rgba(201,169,110,0.3); color: var(--gold-light); text-decoration: none; padding: 12px 28px; border-radius: 2px; font-size: 13px; letter-spacing: 1px; font-family: 'Jost', sans-serif;">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232"/></svg>
+      (15) 98806-7216
+    </a>
+    <a href="https://www.instagram.com/angelvterapias" target="_blank" style="display: inline-flex; align-items: center; gap: 10px; color: var(--stone); text-decoration: none; font-size: 12px; letter-spacing: 2px; font-family: 'Jost', sans-serif;">
+      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 16 16"><path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.9 3.9 0 0 0-1.417.923A3.9 3.9 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.9 3.9 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.9 3.9 0 0 0-.923-1.417A3.9 3.9 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599s.453.546.598.92c.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.5 2.5 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.5 2.5 0 0 1-.92-.598 2.5 2.5 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233s.008-2.388.046-3.231c.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92s.546-.453.92-.598c.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92m-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217m0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334"/></svg>
+      @angelvterapias
+    </a>
+    <div style="font-size: 11px; color: var(--taupe); letter-spacing: 1px; font-family: 'Jost', sans-serif; text-align: center; line-height: 1.8; margin-top: 8px;">
+      Av. Salvador Milego, 146, Jardim Vera Cruz, Sorocaba, SP
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
